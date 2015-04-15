@@ -19,7 +19,7 @@
       {
         "id": 3,
         "name": "cereal",
-        "assignee": "",
+        "assignee": "Geoff",
         "checked": false
       }
     ]
@@ -57,7 +57,7 @@
       {
         "id": 1,
         "name": "salt",
-        "assignee": "Geoff",
+        "assignee": "Brice",
         "checked": false
       },
       {
