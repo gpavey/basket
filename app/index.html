@@ -23,37 +23,63 @@
     <![endif]-->
 
 
-    <div class="container-flex">
+    <div class="container">
       <div class="header">
         <ul class="nav nav-bar">
           <li>
             <ul class="pull-left">
-              <li class="bars"><a href="#">bars</a></li>
-              <li><a href="#">Basket</a></li>
+              <li class="menu"><a href="#">Menu</a></li>
             </ul>
           </li>
-          <li>
+<!--           <li>
             <ul class="pull-right">
               <li><a href="#">User</a></li>
               <li><a href="#">email</a></li>
             </ul>
-          </li>
+          </li> -->
         </ul>
       </div>
-  <div class="slide-menu">
-    <ul>
-      <li>Login</li>
-      <li>New List</li>
-      <li>Delete List</li>
-      <li>Share with others</li>
-      <li>Shared Lists</li>
-    </ul>
 
-  </div>
+      <!-- MAIN CONTENT -->
+      <div class="main-content">
+        <div class="all-items page">
+          <h3>My Lists</h3>
+          <div>
+            <ul id="filters">
+              <li><button class="my-lists">My Lists</button></li>
+              <li><button class="shared-lists">Shared Lists</button></li>
+              <li><button class="assigned-items">Assigned Items</button></li>
+            </ul>
+          </div>
+
+        <ul class="items-list">
+          <script id="items-template" type="x-handlebars-template">​
+            {{#each this}}
+              <li data-index="{{id}}">
+                <h2><a href="#"> {{title}} </a></h2>
+                <ul class="item-detail">
+                  {{#item}}
+                    <li>
+                    <span>name: </span>{{name}}
+                    <span>assignee: </span>{{assignee}}
+                    <span>checked: </span>{{checked}}
+                    </li>
+                  {{/item}}
+                </ul>
+              </li>
+            {{/each}}
+          </script> 
+        </ul>
+
+        </div>
+
+      </div>
+
+
+
 
 
       <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Geoff</p>
       </div>
 
     </div>
@@ -62,6 +88,7 @@
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -85,3 +112,6 @@
         <!-- endbuild -->
 </body>
 </html>
+
+
+
