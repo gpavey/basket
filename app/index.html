@@ -4,16 +4,18 @@
     <meta charset="utf-8">
     <title>idean</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/favicon.ico">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/jquery-mobile/css/themes/default/jquery.mobile.css" />
+    <link rel="stylesheet" href="bower_components/jquery-mobile-bower/css/jquery.mobile-1.4.5.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+<!--     <link rel="stylesheet" href="styles/main.css"> -->
     <link rel="stylesheet" href="styles/style.css">
     <!-- endbuild -->
   </head>
@@ -24,60 +26,65 @@
 
 
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-bar">
-          <li>
-            <ul class="pull-left">
-              <li class="menu"><a href="#">Menu</a></li>
-            </ul>
-          </li>
-<!--           <li>
-            <ul class="pull-right">
-              <li><a href="#">User</a></li>
-              <li><a href="#">email</a></li>
-            </ul>
-          </li> -->
-        </ul>
-      </div>
+      <!-- Start of first page: #one -->
+      <div data-role="page" id="one" data-theme="a">
 
-      <!-- MAIN CONTENT -->
-      <div class="main-content">
-        <div class="all-items page">
-          <h3>My Lists</h3>
-          <div>
-            <ul id="filters">
-              <li><button class="my-lists">My Lists</button></li>
-              <li><button class="shared-lists">Shared Lists</button></li>
-              <li><button class="assigned-items">Assigned Items</button></li>
+        <div data-role="header">
+          <a href="#">link</a>
+          <h1>Basket</h1>
+        </div><!-- /header -->
+
+        <!-- MAIN CONTENT -->
+        <div role="main" class="ui-content">
+          <div class="all-items all-tasks page">
+            <div data-role="navbar">
+              <ul id="filters">
+                <li><a href="#" class="my-lists">My Lists</a></li>
+                <li><a href="#" class="shared-lists">Shared Lists</a></li>
+              </ul>
+            </div>
+
+            <ul class="items-list">
+              <script id="items-template" type="x-handlebars-template">​
+                {{#each this}}
+                  <li data-index="{{id}}">
+                    <h2><a href="#"> {{title}} </a></h2>
+                    <ul class="item-detail">
+                      {{#item}}
+                        <li>
+                        <span>name: </span>{{name}}
+                        <span>assignee: </span>{{assignee}}
+                        <span>checked: </span>{{checked}}
+                        </li>
+                      {{/item}}
+                    </ul>
+                  </li>
+                {{/each}}
+              </script> 
             </ul>
           </div>
-
-        <ul class="items-list">
-          <script id="items-template" type="x-handlebars-template">​
-            {{#each this}}
-              <li data-index="{{id}}">
-                <h2><a href="#"> {{title}} </a></h2>
-                <ul class="item-detail">
-                  {{#item}}
-                    <li>
-                    <span>name: </span>{{name}}
-                    <span>assignee: </span>{{assignee}}
-                    <span>checked: </span>{{checked}}
-                    </li>
-                  {{/item}}
-                </ul>
-              </li>
-            {{/each}}
-          </script> 
-        </ul>
-
         </div>
 
+        <div data-role="footer" data-position="fixed">
+          <div data-role="navbar">
+             <ul>
+                <li><a href="#">Option 1</a></li>
+                <li><a href="#">Option 2</a></li>
+                <li><a href="#">Option 3</a></li>
+             </ul>
+          </div>
+        </div>
+
+      <!-- Start of second page: #two -->
+      <div data-role="page" id="two">
+
+        <div data-role="header">
+          <h1>Two</h1>
+        </div><!-- /header -->
+
+        <div role="main" class="ui-content">
+        </div>
       </div>
-
-
-
-
 
       <div class="footer">
       </div>
@@ -87,8 +94,10 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/handlebars/handlebars.js"></script>
+    <script src="bower_components/jquery-mobile/js/jquery.mobile.js"></script>
+    <script src="bower_components/jquery-mobile-bower/js/jquery.mobile-1.4.5.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

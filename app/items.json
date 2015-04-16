@@ -73,5 +73,30 @@
         "checked": false
       }
     ]
+  },
+  {
+    "id": 4,
+    "title": "Grocery4",
+    "owners": ["Brice","Geoff"],
+    "item": [
+      {
+        "id": 1,
+        "name": "salt",
+        "assignee": "Brice",
+        "checked": false
+      },
+      {
+        "id": 2,
+        "name": "pepper",
+        "assignee": "Brice",
+        "checked": false
+      },
+      {
+        "id": 3,
+        "name": "tabasco",
+        "assignee": "Geoff",
+        "checked": false
+      }
+    ]
   }
 ]

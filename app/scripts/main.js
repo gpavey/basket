@@ -3,6 +3,7 @@ $(function () {
   //Global Variables
   var owner = 'Geoff';
   var items = [];
+  var tasks = [];
 
   $('#filters').on('click', '.my-lists', function(){
     var results = [];
@@ -26,26 +27,18 @@ $(function () {
     renderItemsPage(results);
   });
 
-  $('#filters').on('click', '.assigned-items', function(){
-    var results = [];
-    $.each(items, function(key,value) {
-
-    });
-  });
-
-    //Get the Data
-    $.getJSON( 'data.json', function( data ) {
+    //Get the List Items
+    $.getJSON( 'items.json', function( data ) {
     items = data;
         // Call a function that will turn that data into HTML.
         generateAllItemsHTML(data);
-        // Manually trigger a hashchange to start the app.
-        $(window).trigger('hashchange');
     });
 
-    $(window).on('hashchange', function(){
-        // On every hash change the render function is called with the new hash.
-        // This is how the navigation of the app happens.
-        render(window.location.hash);
+    //Get the User Tasks
+    $.getJSON( 'data/tasks.json', function( data ) {
+    tasks = data;
+        // Call a function that will turn that data into HTML.
+        // generateAllTasksHTML(data);
     });
 
 
@@ -53,7 +46,6 @@ $(function () {
         // This function decides what type of page to show
         // depending on the current url hash value.
     }
-
 
   // This function receives an object containing all the product I want to show.
   function renderItemsPage(data){
@@ -92,48 +84,6 @@ $(function () {
       // Shows the error page.
   }
 
-//navigation
-    // var map = {
-
-    //   // The "Homepage".
-    //   '': function() {
-
-    //     // Clear the filters object, uncheck all checkboxes, show all the products
-    //     filters = {};
-    //     checkboxes.prop('checked',false);
-
-    //     renderProductsPage(items);
-    //   };,
-
-    //   // Single Products page.
-    //   '#product': function() {
-
-    //     // Get the index of which product we want to show and call the appropriate function.
-    //     var index = url.split('#item/')[1].trim();
-
-    //     renderSingleItemPage(index, products);
-    //   },
-
-    //   // Page with filtered products
-    //   '#filter': function() {
-
-    //     // Grab the string after the '#filter/' keyword. Call the filtering function.
-    //     url = url.split('#filter/')[1].trim();
-
-    //     // Try and parse the filters object from the query string.
-    //     try {
-    //       filters = JSON.parse(url);
-    //     }
-    //       // If it isn't a valid json, go back to homepage ( the rest of the code won't be executed ).
-    //     catch(err) {
-    //       window.location.hash = '#';
-    //       return;
-    //     }
-
-    //     renderFilterResults(filters, items);
-    //   }
-
-    // };
 
 //call this function once on pageload
   function generateAllItemsHTML(data){
@@ -142,8 +92,6 @@ $(function () {
     //Compile the template​
     var theTemplate = Handlebars.compile (theTemplateScript);
     list.append (theTemplate(data));
-    console.log(list);
-
 
     // Each item has a data-index attribute.
     // On click change the url hash to open up a preview for this item only.
@@ -154,6 +102,17 @@ $(function () {
       window.location.hash = 'list/' + listIndex;
     });
   }
+
+// call this function once on pageload
+  // function generateAllTasksHTML(data){
+  //   console.log('task-data: '+data);
+  //   var task = $('.all-tasks .tasks-list');
+  //   var theTemplateScript = $('#tasks-template').html();
+  //   //compile the template
+  //   var theTemplate = Handlebars.compile(theTemplateScript);
+  //   task.append(theTemplate(data));
+  //   console.log('task:'+task);
+  // }
 
   // Get the filters object, turn it into a string and write it into the hash.
   // function createQueryHash(filters){
