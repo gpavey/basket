@@ -31,7 +31,7 @@ $(function () {
     $.getJSON( 'items.json', function( data ) {
     items = data;
         // Call a function that will turn that data into HTML.
-        generateAllItemsHTML(data);
+        generateAllListsHTML(data);
     });
 
     //Get the User Tasks
@@ -41,16 +41,10 @@ $(function () {
         // generateAllTasksHTML(data);
     });
 
-
-    function render(url) {
-        // This function decides what type of page to show
-        // depending on the current url hash value.
-    }
-
-  // This function receives an object containing all the product I want to show.
+  // This function receives an object containing all the products to show.
   function renderItemsPage(data){
-    var page = $('.all-items'),
-      allItems = $('.all-items .items-list > li');
+    var page = $('.all-lists'),
+      allItems = $('.all-lists .items-list > li');
 
     // Hide all the items in the items list.
     allItems.addClass('hidden');
@@ -71,10 +65,6 @@ $(function () {
 
   }
 
-  function renderSingleItemPage(index, data){
-      // Shows the Single Product Page with appropriate data.
-  }
-
   function renderFilterResults(filters, items){
       // Crates an object with filtered items and passes it to renderItemsPage.
       renderItemsPage(results);
@@ -85,48 +75,48 @@ $(function () {
   }
 
 
-//call this function once on pageload
-  function generateAllItemsHTML(data){
-    var list = $('.all-items .items-list');
-    var theTemplateScript = $('#items-template').html();
+// Handlebars compile the lists template
+  function generateAllListsHTML(data){
+    var list = $('.all-lists .items-list');
+    var theTemplateScript = $('#lists-template').html();
     //Compile the template​
+    console.log('data:' +data)
     var theTemplate = Handlebars.compile (theTemplateScript);
     list.append (theTemplate(data));
 
     // Each item has a data-index attribute.
-    // On click change the url hash to open up a preview for this item only.
-    // Remember: every hashchange triggers the render function.
+    // On click get the data to be injected into the page for this list only.
     list.find('li').on('click', function (e) {
       e.preventDefault();
       var listIndex = $(this).data('index');
-      window.location.hash = 'list/' + listIndex;
+      var results = findListById(listIndex);
+      window.location.hash = '#two';
+
     });
   }
+// Handlebars compile the items template from the script tag
+  function generateAllItemsHTML(results){
+    var items = $('.all-items .items-detail');
+    var theTemplateScript = $('#items-template').html();
+    console.log(theTemplateScript);
+    //compile the template
+    var theTemplate = Handlebars.compile(theTemplateScript);
+    items.append(theTemplate(results))
+  }
 
-// call this function once on pageload
-  // function generateAllTasksHTML(data){
-  //   console.log('task-data: '+data);
-  //   var task = $('.all-tasks .tasks-list');
-  //   var theTemplateScript = $('#tasks-template').html();
-  //   //compile the template
-  //   var theTemplate = Handlebars.compile(theTemplateScript);
-  //   task.append(theTemplate(data));
-  //   console.log('task:'+task);
-  // }
-
-  // Get the filters object, turn it into a string and write it into the hash.
-  // function createQueryHash(filters){
-
-  //   // Here I check if filters isn't empty.
-  //   if(!$.isEmptyObject(filters)){
-  //     // Stringify the object via JSON.stringify and write it after the '#filter' keyword.
-  //     window.location.hash = '#filter/' + JSON.stringify(filters);
-  //   }
-  //   else{
-  //     // If it's empty change the hash to '#' (the homepage).
-  //     window.location.hash = '#';
-  //   }
-
+//get all items from a list
+  function findListById(listIndex){
+    var results = [];
+    $.each(items, function(key,value) {
+      var listId = value.id;
+      if( listId === listIndex){
+        results.push(value);
+      }
+    });
+    var fuk = generateAllItemsHTML(results);
+    console.log(fuk);
+    return fuk;
+  }
 
 });
 

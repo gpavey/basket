@@ -28,15 +28,13 @@
     <div class="container">
       <!-- Start of first page: #one -->
       <div data-role="page" id="one" data-theme="a">
-
         <div data-role="header">
           <a href="#">link</a>
           <h1>Basket</h1>
-        </div><!-- /header -->
+        </div>
 
-        <!-- MAIN CONTENT -->
         <div role="main" class="ui-content">
-          <div class="all-items all-tasks page">
+          <div class="all-lists page">
             <div data-role="navbar">
               <ul id="filters">
                 <li><a href="#" class="my-lists">My Lists</a></li>
@@ -45,19 +43,10 @@
             </div>
 
             <ul class="items-list">
-              <script id="items-template" type="x-handlebars-template">​
+              <script id="lists-template" type="x-handlebars-template">​
                 {{#each this}}
                   <li data-index="{{id}}">
                     <h2><a href="#"> {{title}} </a></h2>
-                    <ul class="item-detail">
-                      {{#item}}
-                        <li>
-                        <span>name: </span>{{name}}
-                        <span>assignee: </span>{{assignee}}
-                        <span>checked: </span>{{checked}}
-                        </li>
-                      {{/item}}
-                    </ul>
                   </li>
                 {{/each}}
               </script> 
@@ -68,29 +57,38 @@
         <div data-role="footer" data-position="fixed">
           <div data-role="navbar">
              <ul>
-                <li><a href="#">Option 1</a></li>
+                <li><a href="/views/item-view.html">Option 1</a></li>
                 <li><a href="#">Option 2</a></li>
                 <li><a href="#">Option 3</a></li>
              </ul>
           </div>
         </div>
+      </div>
 
-      <!-- Start of second page: #two -->
       <div data-role="page" id="two">
-
         <div data-role="header">
           <h1>Two</h1>
         </div><!-- /header -->
 
         <div role="main" class="ui-content">
+          <div class="all-items">
+            <ul class="items-detail">
+              <script id="items-template" type="x-handlebars-template">​
+                {{#each this}}
+                      {{#item}}
+                        <li>
+                        <span>name: </span>{{name}}
+                        <span>assignee: </span>{{assignee}}
+                        <span>checked: </span>{{checked}}
+                        </li>
+                      {{/item}}
+                {{/each}}
+              </script> 
+            </ul>
+          </div>
         </div>
       </div>
-
-      <div class="footer">
-      </div>
-
     </div>
-
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->

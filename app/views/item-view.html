@@ -1,0 +1,35 @@
+<!-- Start of second page: #two -->
+<div data-role="page" id="two">
+
+  <div data-role="header">
+    <h1>Two</h1>
+  </div><!-- /header -->
+
+  <div role="main" class="ui-content">
+    <div class="all-items">
+      <ul class="items-detail">
+        <script id="items-template" type="x-handlebars-template">​
+          {{#each this}}
+                {{#item}}
+                  <li>
+                  <span>name: </span>{{name}}
+                  <span>assignee: </span>{{assignee}}
+                  <span>checked: </span>{{checked}}
+                  </li>
+                {{/item}}
+          {{/each}}
+        </script> 
+      </ul>
+    </div>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+       <ul>
+          <li><a href="#">Option 1</a></li>
+          <li><a href="#">Option 2</a></li>
+          <li><a href="#">Option 3</a></li>
+       </ul>
+    </div>
+  </div>
+</div>
