@@ -5,6 +5,7 @@ $(function () {
   var items = [];
   var tasks = [];
 
+  // Set event handlers
   $('#filters').on('click', '.my-lists', function(){
     var results = [];
     $.each(items, function(key,value) {
@@ -26,10 +27,16 @@ $(function () {
     });
     renderListsPage(results);
   });
-
-  // $("#completedTash").on("click", function() {
-  //   alert($(this).attr(true));
-  // });
+  //Mark item as done
+  $('.items-detail').on('click','span',function() {
+    $(this).find('a').toggleClass('ui-icon-check');
+    $(this).next('span').toggleClass('strikethrough');
+  });
+  //Delete item
+  $('.items-detail').on('click','span:not(first)', function(){
+    alert('got it');
+    $(this).parent().hide();
+  })
 
     //Get the List Items
     $.getJSON( 'items.json', function( data ) {
@@ -67,12 +74,6 @@ $(function () {
     page.addClass('visible');
   }
 
-  // function renderFilterResults(filters, items){
-  //     // Crates an object with filtered items and passes it to renderListsPage.
-  //     renderListsPage(results);
-  // }
-
-
   function renderItemsPage(data){
     var page = $('.all-lists'),
       allItems = $('.all-items .items-detail > li');
@@ -104,7 +105,6 @@ $(function () {
     var list = $('.all-lists .items-list');
     var theTemplateScript = $('#lists-template').html();
     //Compile the template​
-    console.log('data:' +data);
     var theTemplate = Handlebars.compile (theTemplateScript);
     list.append (theTemplate(data));
 
@@ -124,6 +124,8 @@ $(function () {
     var theTemplateScript = $('#items-template').html();
     //compile the template
     var theTemplate = Handlebars.compile(theTemplateScript);
+    var detached = items;
+    // $('body').append(detached);
     items.append(theTemplate(results));
   }
 
@@ -138,8 +140,6 @@ $(function () {
     });
     generateAllItemsHTML(results);
   }
-
-
 
 });
 

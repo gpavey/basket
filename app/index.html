@@ -68,7 +68,7 @@
 
       <div data-role="page" id="two" data-theme="a">
         <div data-role="header">
-          <a href="#one">link</a>
+          <a href="#one">Home</a>
           <h1>Two</h1>
         </div>
 
@@ -78,16 +78,17 @@
               <script id="items-template" type="x-handlebars-template">​
                 {{#each this}}
                       {{#item}}
-                        <li>
+                        <li class="toggleCheck">
                         <span class="ui-nodisc-icon ui-alt-icon">
-                          <a href="#" class="ui-btn ui-nodisk-icon ui-btn-icon-notext ui-btn-inline">Delete</a>
+                          <a href="#" class="ui-btn ui-nodisk-icon ui-btn-icon-notext ui-btn-inline">Check</a>
 
                         </span>
                         <span class="h2">{{name}}</span>
-                        <span>assignee: </span>{{assignee}}
-                        <span class="right ui-nodisc-icon ui-alt-icon">    
+                        <span  class="right ui-nodisc-icon ui-alt-icon">
                           <a href="#" class="ui-btn ui-nodisk-icon ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-inline">Delete</a>
-</span>
+                          </span>
+                        <div class="text-center">
+                        <span class="assignee">assigned to: {{assignee}}</span></div>
                         </li>
                       {{/item}}
                 {{/each}}
