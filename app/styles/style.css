@@ -40,6 +40,11 @@ ul {
 .ui-mobile label {
   display: inline-block;
 }
+a.ui-shadow {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .strikethrough {
   text-decoration:line-through;
 }

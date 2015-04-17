@@ -3,7 +3,7 @@ $(function () {
   //Global Variables
   var owner = 'Geoff';
   var items = [];
-  var tasks = [];
+  var itemListId = 0;
 
   // Set event handlers
   $('#filters').on('click', '.my-lists', function(){
@@ -27,16 +27,29 @@ $(function () {
     });
     renderListsPage(results);
   });
+
   //Mark item as done
   $('.items-detail').on('click','span',function() {
     $(this).find('a').toggleClass('ui-icon-check');
     $(this).next('span').toggleClass('strikethrough');
   });
   //Delete item
-  $('.items-detail').on('click','span:not(first)', function(){
-    alert('got it');
-    $(this).parent().hide();
+  $('.items-detail').on('click','span:not(:first-child) a', function(){
+    $(this).closest('li').hide();
   })
+
+  //Delete a List
+  $(('.deleteList')).on('click',function(){
+    //grab alllist so I can map through them
+    var allLists = $('.all-lists .items-list > li');
+    allLists.each(function () {
+      var that = $(this);
+      console.log(that);
+        if(that.data('index') === itemListId){
+          that.remove();
+        }
+    });
+  });
 
     //Get the List Items
     $.getJSON( 'items.json', function( data ) {
@@ -46,13 +59,13 @@ $(function () {
     });
 
     //Get the User Tasks
-    $.getJSON( 'data/tasks.json', function( data ) {
-    tasks = data;
-        // Call a function that will turn that data into HTML.
-        // generateAllTasksHTML(data);
-    });
+    // $.getJSON( 'data/tasks.json', function( data ) {
+    // tasks = data;
+    //     // Call a function that will turn that data into HTML.
+    //     // generateAllTasksHTML(data);
+    // });
 
-  // This function receives an object containing all the products to show.
+  // This function receives an object containing all the lists to show.
   function renderListsPage(data){
     var page = $('.all-lists'),
       allItems = $('.all-lists .items-list > li');
@@ -74,7 +87,9 @@ $(function () {
     page.addClass('visible');
   }
 
+  // This function receives an object containing all the items to show.
   function renderItemsPage(data){
+
     var page = $('.all-lists'),
       allItems = $('.all-items .items-detail > li');
 
@@ -93,12 +108,8 @@ $(function () {
     });
     // Show the page itself.
     page.addClass('visible');
+    return(data);
   }
-
-  function renderErrorPage(){
-      // Shows the error page.
-  }
-
 
 // Handlebars compile the lists template
   function generateAllListsHTML(data){
@@ -133,11 +144,13 @@ $(function () {
   function findListById(listIndex){
     var results = [];
     $.each(items, function(key,value) {
-      var listId = value.id;
+     var listId = value.id;
       if( listId === listIndex){
+        itemListId = listId;
         results.push(value);
       }
     });
+    console.log(itemListId);
     generateAllItemsHTML(results);
   }
 
