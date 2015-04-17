@@ -13,7 +13,7 @@ $(function () {
         results.push(value);
       }
     });
-    renderItemsPage(results);
+    renderListsPage(results);
   });
 
   $('#filters').on('click', '.shared-lists', function(){
@@ -24,8 +24,12 @@ $(function () {
         results.push(value);
       }
     });
-    renderItemsPage(results);
+    renderListsPage(results);
   });
+
+  // $("#completedTash").on("click", function() {
+  //   alert($(this).attr(true));
+  // });
 
     //Get the List Items
     $.getJSON( 'items.json', function( data ) {
@@ -42,7 +46,7 @@ $(function () {
     });
 
   // This function receives an object containing all the products to show.
-  function renderItemsPage(data){
+  function renderListsPage(data){
     var page = $('.all-lists'),
       allItems = $('.all-lists .items-list > li');
 
@@ -59,15 +63,35 @@ $(function () {
         }
       });
     });
-
     // Show the page itself.
     page.addClass('visible');
-
   }
 
-  function renderFilterResults(filters, items){
-      // Crates an object with filtered items and passes it to renderItemsPage.
-      renderItemsPage(results);
+  // function renderFilterResults(filters, items){
+  //     // Crates an object with filtered items and passes it to renderListsPage.
+  //     renderListsPage(results);
+  // }
+
+
+  function renderItemsPage(data){
+    var page = $('.all-lists'),
+      allItems = $('.all-items .items-detail > li');
+
+    // Hide all the items in the items list.
+    allItems.addClass('hidden');
+
+    // Iterate over all of the products.
+    // If their ID is somewhere in the data object remove the hidden class to reveal them.
+    allItems.each(function () {
+      var that = $(this);
+      data.forEach(function (item) {
+        if(that.data('index') === item.id){
+          that.removeClass('hidden');
+        }
+      });
+    });
+    // Show the page itself.
+    page.addClass('visible');
   }
 
   function renderErrorPage(){
@@ -80,7 +104,7 @@ $(function () {
     var list = $('.all-lists .items-list');
     var theTemplateScript = $('#lists-template').html();
     //Compile the template​
-    console.log('data:' +data)
+    console.log('data:' +data);
     var theTemplate = Handlebars.compile (theTemplateScript);
     list.append (theTemplate(data));
 
@@ -98,10 +122,9 @@ $(function () {
   function generateAllItemsHTML(results){
     var items = $('.all-items .items-detail');
     var theTemplateScript = $('#items-template').html();
-    console.log(theTemplateScript);
     //compile the template
     var theTemplate = Handlebars.compile(theTemplateScript);
-    items.append(theTemplate(results))
+    items.append(theTemplate(results));
   }
 
 //get all items from a list
@@ -113,10 +136,10 @@ $(function () {
         results.push(value);
       }
     });
-    var fuk = generateAllItemsHTML(results);
-    console.log(fuk);
-    return fuk;
+    generateAllItemsHTML(results);
   }
+
+
 
 });
 

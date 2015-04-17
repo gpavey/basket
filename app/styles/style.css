@@ -1,0 +1,20 @@
+.h2 {
+  font-size: 25px;
+  text-transform: capitalize;
+}
+
+ul {
+  list-style-type: none;
+}
+.right {
+  float: right;
+}
+.left{
+  float:left;
+}
+.items-list li a:hover {
+  text-decoration: none;
+}
+
+
+
