@@ -28,18 +28,26 @@ $(function () {
     renderListsPage(results);
   });
 
+  $('#filters').on('click', '.all-lists', function(){
+    var results = [];
+    $.each(items, function(key,value) {
+        results.push(value);
+      });
+    renderListsPage(results);
+  });
+
   //Mark item as done
   $('.items-detail').on('click','span',function() {
     $(this).find('a').toggleClass('ui-icon-check');
     $(this).next('span').toggleClass('strikethrough');
   });
   //Delete item
-  $('.items-detail').on('click','span:not(:first-child) a', function(){
+  $('.items-detail').on('click','span:nth-of-type(3) a', function(){
     $(this).closest('li').hide();
   })
 
   //Delete a List
-  $(('.deleteList')).on('click',function(){
+  $('.deleteList').on('click',function(){
     //grab alllist so I can map through them
     var allLists = $('.all-lists .items-list > li');
     allLists.each(function () {
@@ -50,6 +58,13 @@ $(function () {
         }
     });
   });
+
+  // Add Item
+  $('form').submit(function(){
+    var allLists = $('.all-lists .items-list > li');
+    var data = $('#item-name').val();
+    console.log(data);
+  })
 
     //Get the List Items
     $.getJSON( 'items.json', function( data ) {

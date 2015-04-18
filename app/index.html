@@ -36,9 +36,10 @@
           <div class="all-lists page">
             <div data-role="navbar">
               <ul id="filters">
+                <li><a href="#" class="all-lists">All Lists</a></li>
                 <li><a href="#" class="my-lists">My Lists</a></li>
                 <li><a href="#" class="shared-lists">Shared Lists</a></li>
-              <li><a href="/views/new-list.html" class="new-list">New List</a></li>
+
               </ul>
             </div>
 
@@ -59,7 +60,7 @@
           <div data-role="navbar">
              <ul>
                 <li><a href="/views/item-view.html">Share List</a></li>
-                <li><a href="#">Add Item</a></li>
+                <li><a href="/views/new-list.html" class="new-list">New List</a></li>
              </ul>
           </div>
         </div>
@@ -87,7 +88,10 @@
                         <span class="h2">{{name}}</span>
                         <span  class="right ui-nodisc-icon ui-alt-icon">
                           <a href="#" class="ui-btn ui-nodisk-icon ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-inline">Delete</a>
-                          </span>
+                        </span>
+                        <span class="right ui-nodisc-icon ui-alt-icon">
+                          <a href="#" class="ui-btn ui-nodisk-icon ui-corner-all ui-icon-edit ui-btn-icon-notext ui-btn-inline">Edit</a>
+                        </span>
                         <div class="text-center">
                         <span class="assignee">assigned to: {{assignee}}</span></div>
                         </li>
@@ -103,18 +107,14 @@
              <ul>
                 <li>
                   <a href="#popupAddItem" data-rel="popup" data-position-to="window" class="ui-btn ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-a" data-transition="pop">Add Item</a>
-                  <div data-role="popup" id="popupAddItem" data-theme="a" class="ui-corner-all">
-                    <form>
-                      <div style="padding:10px 20px;">
-                      <h3>Add New Item</h3>
-                      <label for="un" class="ui-hidden-accessible">Username:</label>
-                      <input type="text" name="user" id="un" value="" placeholder="username" data-theme="a">
-                      <label for="pw" class="ui-hidden-accessible">Password:</label>
-                      <input type="password" name="pass" id="pw" value="" placeholder="password" data-theme="a">
-                      <button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
+                  <div data-role="popup" id="popupAddItem" data-theme="a">
+                  <form>
+                    <div class="new-item">
+                      <input type="text" name="user" id="item-name" value="" placeholder="List Name" data-theme="a" class="item-input">
+                      <button type="submit" class="ui-btn ui-btn-a ui-btn-icon-left ui-icon-check item-btn">Submit</button>
                     </div>
                   </form>
-                </div>
+                  </div>
                 </li>
 
                 <li><a href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-a">Delete List</a>
@@ -125,8 +125,8 @@
                     <div role="main" class="ui-content">
                       <h3 class="ui-title">Are you sure you want to delete this list?</h3>
                       <p>This action cannot be undone.</p>
-                      <a href="#" class="ui-btn ui-btn-inline ui-btn-a" data-rel="back">Cancel</a>
-                      <a href="#" class="deleteList ui-btn ui-btn-inline ui-btn-a" data-rel="back" data-transition="flow">Delete</a>
+                      <a href="#" data-role="button" data-inline="true" data-corners="false" data-rel="back">Cancel</a>
+                      <a href="#" class="deleteList" data-role="button" data-inline="true" data-corners="false" data-rel="back" data-transition="flow">Delete</a>
                   </div>
                 </li>
              </ul>

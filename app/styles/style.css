@@ -6,6 +6,7 @@
 ul {
   list-style-type: none;
 }
+:focus {outline: none; box-shadow: none;}
 .right {
   float: right;
 }
@@ -16,7 +17,8 @@ ul {
   display: inline-block;
   vertical-align: bottom;
 }
-.items-detail li  {
+.items-detail li,
+.items-list li {
   margin-bottom: 5px;
   background: #fefefe;
   -webkit-transition: all 250ms;
@@ -30,11 +32,13 @@ ul {
   -moz-transform: translateY(-3px);
   transform: translateY(-3px);
 }
-
 .items-list li a:hover {
   text-decoration: none;
 }
-.ui-page-theme-a .ui-btn:focus {
+.new-item {padding:10px;}
+
+.ui-page-theme-a .ui-btn:focus,
+.ui-input-text input:focus {
  box-shadow: none;
 }
 .ui-mobile label {
@@ -47,6 +51,16 @@ a.ui-shadow {
 }
 .strikethrough {
   text-decoration:line-through;
+}
+.ui-focus,
+.ui-btn:focus {
+ -moz-box-shadow: none !important;
+ -webkit-box-shadow: none !important;
+ box-shadow: none !important;
+}
+
+.ui-corner-all{
+  border-radius: 0;
 }
 
 
