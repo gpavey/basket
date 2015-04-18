@@ -1,0 +1,23 @@
+[
+  {
+    "list_name": "Breakfast",
+    "id": 1,
+    "name": "Eggs",
+    "assignee": "Geoff",
+    "checked": false
+  },
+  {
+    "list_name": "Breakfast",
+    "id": 2,
+    "name": "Bacon",
+    "assignee": "Geoff",
+    "checked": false
+  },
+  {
+    "list_name": "Dinner",
+    "id": 3,
+    "name": "Bread",
+    "assignee": "Geoff",
+    "checked": false
+  }
+]

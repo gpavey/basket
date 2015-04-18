@@ -1,0 +1,43 @@
+<!-- Start of second page: #two -->
+<div data-role="page" id="new_list" data-theme="a">
+
+  <div data-role="header">
+    <a href="#">Home</a>
+    <h1>twoa</h1>
+  </div>
+
+  <div role="main" class="ui-content">
+
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+       <ul>
+          <li><a href="#">Option 1</a></li>
+          <li><a href="#">Option 2</a></li>
+          <li><a href="#">Option 3</a></li>
+       </ul>
+    </div>
+  </div>
+</div>
+
+
+
+              <script id="items-template" type="x-handlebars-template">​
+                {{#each this}}
+                      {{#item}}
+                        <li class="toggleCheck">
+                        <span class="ui-nodisc-icon ui-alt-icon">
+                          <a href="#" class="ui-btn ui-nodisk-icon ui-btn-icon-notext ui-btn-inline">Delete</a>
+
+                        </span>
+                        <span class="h2">{{name}}</span>
+                        <span  class="toggleCheck right ui-nodisc-icon ui-alt-icon">    
+                          <a href="#" class="ui-btn ui-nodisk-icon ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-inline">Delete</a>
+                          </span>
+                        <div class="text-center">
+                        <span class="assignee">assigned to: {{assignee}}</span></div>
+                        </li>
+                      {{/item}}
+                {{/each}}
+              </script> 
